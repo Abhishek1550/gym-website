@@ -4,7 +4,8 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - name: Checkout
+        uses: actions/checkout@v2
       
       - name: Run test step
         run: echo "My First git hub action job"
