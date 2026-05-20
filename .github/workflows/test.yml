@@ -1,0 +1,14 @@
+name: test-workflow
+on: push
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run test step
+        run: echo "My First git hub action job"
+
+      - name: List files in the current directory
+        run: ls
+
+      - name: Read Readme file
+        run: cat README.md
