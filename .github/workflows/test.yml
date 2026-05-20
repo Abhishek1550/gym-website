@@ -17,4 +17,4 @@ jobs:
         run: sudo apt-get install cowsay
 
       - name: ASCII art
-        run: cowsay -f dragon "Hahahah, I am Dragon....RAWR!!!" >> dragon.txt
+        run: cowsay -f dragon "Hahahah, I am Dragon....RAWR!!!"
