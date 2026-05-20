@@ -7,11 +7,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Run test step
-        run: echo "My First git hub action job"
+      - name: Welcome Message
+        run: |
+            echo "My First git hub action job"
+            ls -la
+            cat README.md
 
-      - name: List files in the current directory
-        run: ls
-      
-      - name: Read Readme file
-        run: cat README.md
+      - name : Install cowsay
+        run: sudo apt-get install cowsay
+
+      - name: ASCII art
+        run: cowsay -f dragon "Hahahah, I am Dragon....RAWR!!!" >> dragon.txt
