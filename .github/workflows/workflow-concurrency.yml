@@ -36,5 +36,5 @@ jobs:
 
             -   name: Concurrency Check
                 run: |
-                    echo "Checking for concurrent deployments..."
+                    echo "Checking for concurrent deployment..."
                     sleep 180
