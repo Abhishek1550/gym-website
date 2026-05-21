@@ -1,4 +1,4 @@
-name: classic-CI/CD-workflow
+name: workflow-concurrency
 on: push
 
 concurrency:
@@ -57,7 +57,7 @@ jobs:
 
             - name: Concurrency Check
               run: | 
-                  echo "Checking for concurrency at workflow level..."
+                  echo "Checking for concurrency..."
                   sleep 300
 
             
