@@ -1,4 +1,4 @@
-name: Secrets
+name: if-contexts
 on: push
 env:
     CONTAINER_NAME: test-docker-container
