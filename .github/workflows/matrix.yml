@@ -26,16 +26,15 @@ jobs:
     deploy:
         strategy:
             fail-fast: false
-            max-parallel: 2
             matrix:
                 os: [ubuntu-latest, ubuntu-20.04, windows-latest]
                 image: [hello-world, alpine]
-                exclude:
-                    -   os: windows-latest
-                        image: alpine
-                include:
-                    -   os: ubuntu-latest
-                        image: amd64/alpine
+                # exclude:
+                #     -   os: windows-latest
+                #         image: alpine
+                # include:
+                #     -   os: ubuntu-latest
+                #         image: amd64/alpine
         
         runs-on: ${{ matrix.os }}
         steps:
