@@ -1,0 +1,21 @@
+name: matrix-configurations
+on: workflow_dispatch
+
+jobs:
+    deploy-on-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Docker-Information
+                run: docker info
+            
+            -   name: Run Images
+                run: docker run hello-world
+
+    deploy-on-windows:
+        runs-on: windows-latest
+        steps:
+            -   name: Docker-Information
+                run: docker info
+
+            -   name: Run Images
+                run: docker run hello-world
