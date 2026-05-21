@@ -8,13 +8,8 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Welcome Message
-        run: |
-            echo "My First git hub action job"
-            ls -la
-            cat README.md
+        run: ./scripts/welcome.sh
+            
 
-      - name : Install cowsay
-        run: sudo apt-get install cowsay
-
-      - name: ASCII art
-        run: cowsay -f dragon "Hahahah, I am Dragon....RAWR!!!"
+      - name: Print ASCII Art
+        run: ./scripts/print-ascii.sh
