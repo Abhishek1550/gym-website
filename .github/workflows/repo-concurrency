@@ -1,0 +1,63 @@
+name: classic-CI/CD-workflow
+on: push
+
+concurrency:
+  group: classic-CI/CD-workflow
+  cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install cowsay
+              run: sudo apt-get install cowsay -y
+
+            - name: ASCII art
+              run: cowsay -f dragon "Hahahah, I am Dragon....RAWR!!!" >> dragon.txt
+
+            - name: Upload dragon.txt as artifact
+              uses: actions/upload-artifact@v7
+              with:
+                name: dragon-text-file
+                path: dragon.txt
+
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Download dragon.txt artifact
+              uses: actions/download-artifact@v8
+              with:
+                name: dragon-text-file
+
+            - name: Find dragon.txt
+              run: grep -i "dragon" dragon.txt
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Deploying the code
+              run: echo "Deploying the code..."
+
+            - name: Download dragon.txt artifact
+              uses: actions/download-artifact@v8
+              with:
+                name: dragon-text-file
+
+            - name: Print ASCII art
+              run: cat dragon.txt
+
+    success:
+        runs-on: ubuntu-latest
+        needs: [build, test, deploy]
+        steps:
+            - name: Print Success Message
+              run: echo "Workflow completed successfully!"
+
+            - name: Concurrency Check
+              run: | 
+                  echo "Checking for concurrency..."
+                  sleep 300
+
+            
