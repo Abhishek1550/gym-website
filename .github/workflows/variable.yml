@@ -1,4 +1,4 @@
-name: Exploring Variable Secrets in GitHub Actions
+name: Variables
 on: push
 env:
     CONTAINER_NAME: test-docker-container
@@ -10,7 +10,7 @@ jobs:
             DOCKER_USERNAME: abhishek_b
         steps:
             -   name: Docker Build
-                run: echo docker build -t $CONTAINER_NAME/$DOCKER_USERNAME/$DOCKER_IMAGE_NAME:latest
+                run: echo docker build -t ${{ env.CONTAINER_NAME }}/$DOCKER_USERNAME/$DOCKER_IMAGE_NAME:latest
             
             -   name: Docker Login
                 env:
