@@ -57,7 +57,7 @@ jobs:
 
             - name: Concurrency Check
               run: | 
-                  echo "Checking for concurrency..."
+                  echo "Checking for concurrency at workflow level..."
                   sleep 300
 
             
