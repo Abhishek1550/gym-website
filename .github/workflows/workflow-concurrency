@@ -58,6 +58,6 @@ jobs:
             - name: Concurrency Check
               run: | 
                   echo "Checking for concurrency..."
-                  sleep 300
+                  sleep 180
 
             
