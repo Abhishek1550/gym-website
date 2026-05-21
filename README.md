@@ -7,7 +7,6 @@ A modern static multi-page gym website built using HTML and CSS.
 - Responsive design
 - Multi-page layout
 - Modern UI
-- Hero section
 - Services page
 - Pricing plans
 - Contact page
