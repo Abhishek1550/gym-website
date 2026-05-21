@@ -1,0 +1,31 @@
+name: if-contexts
+on: push
+env:
+    CONTAINER_NAME: test-docker-container
+    DOCKER_IMAGE_NAME: test-docker-image
+jobs:
+    docker:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Docker Build
+                run: echo docker build -t $CONTAINER_NAME/${{ vars.DOCKER_USERNAME }}/$DOCKER_IMAGE_NAME:latest
+            
+            -   name: Docker Login
+                run: echo docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            -   name: Docker Publish
+                run: echo docker push $CONTAINER_NAME/${{ vars.DOCKER_USERNAME }}/$DOCKER_IMAGE_NAME:latest
+
+            -   name: Docker Status check
+                run: echo "Docker image $CONTAINER_NAME/${{ vars.DOCKER_USERNAME }}/$DOCKER_IMAGE_NAME:latest has been built and pushed successfully!"
+    
+    deploy:
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        needs: docker
+        steps:
+            -   name: Deploying the code
+                run: echo "Deploying the code..."
+            
+            -   name: Docker Run
+                run: echo docker run -d $CONTAINER_NAME/$DOCKER_IMAGE_NAME:latest
