@@ -23,9 +23,6 @@ jobs:
     
     deploy:
         runs-on: ubuntu-latest
-        concurrency:
-            group: deploy-group
-            cancel-in-progress: true
         needs: docker
         steps:
             -   name: Deploying the code

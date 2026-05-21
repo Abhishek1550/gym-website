@@ -1,21 +1,39 @@
-name: matrix-configurations
-on: workflow_dispatch
+# name: matrix-configurations
+# on: workflow_dispatch
 
+# jobs:
+#     deploy-on-ubuntu:
+#         runs-on: ubuntu-latest
+#         steps:
+#             -   name: Docker-Information
+#                 run: docker info
+            
+#             -   name: Run Images
+#                 run: docker run hello-world
+
+#     deploy-on-windows:
+#         runs-on: windows-latest
+#         steps:
+#             -   name: Docker-Information
+#                 run: docker info
+
+#             -   name: Run Images
+#                 run: docker run hello-world
+
+name: matrix-strategy
+on: workflow_dispatch
 jobs:
-    deploy-on-ubuntu:
-        runs-on: ubuntu-latest
+    deploy:
+        strategy:
+            matrix:
+                os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+                image: [hello-world, alpine:latest]
+        
+        runs-on: ${{ matrix.os }}
         steps:
             -   name: Docker-Information
                 run: docker info
             
             -   name: Run Images
-                run: docker run hello-world
-
-    deploy-on-windows:
-        runs-on: windows-latest
-        steps:
-            -   name: Docker-Information
-                run: docker info
-
-            -   name: Run Images
-                run: docker run hello-world
+                run: docker run ${{ matrix.image }}
+        
